@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Call Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="fetchDataBtn">Fetch Data</button>
+    <div id="result"></div>
+  
+
+
+    <script>
+        $(document).ready(function () {
+            // Function to make Ajax call
+            function fetchData() {
+                $.ajax({
+                    url: 'http://localhost:29346/api/Student', // Sample API endpoint
+                    type: 'GET',
+                    success: function (response) {
+                        // Handle successful response
+                        response.map(record => {
+                            $('#result').append('<span>Name: ' + record.name + ' =></span>  <span>Teacher: ' + record.teacherName + '</span> <br/>');
+                        })
+                        console.log(response)
+
+                        //$('#result').html('<p>Title: ' + response.title + '</p><p>Body: ' + response.body + '</p>');
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        $('#result').html('<p>Error: ' + error + '</p>');
+                    }
+                });
+            }
+
+
+
+            // Example of triggering Ajax call on button click
+            $('#fetchDataBtn').click(function () {
+                fetchData();
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>
