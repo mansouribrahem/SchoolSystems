@@ -1,1 +1,1 @@
-# SchoolSystems
+# SchoolSystem
